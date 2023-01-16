@@ -1,0 +1,301 @@
+@charset "UTF-8";
+/* 
+* { outline: 1px solid rgba(255,0,0,.2);} 
+* :hover { outline: 1px solid rgba(255,0,0,0.6); } 
+* * { outline: 1px solid rgba(0,255,0,.2);}
+* *:hover { outline: 1px solid rgba(0,255,0,0.6); } 
+* * * { outline: 1px solid rgba(0,0,255,.2);}
+* * *:hover { outline: 1px solid rgba(0,0,255,0.6); } 
+* * * * { outline: 1px solid rgba(255,0,255,.2);}
+* * * *:hover { outline: 1px solid rgba(255,0,0,0.6); } 
+* * * * * { outline: 1px solid rgba(0,255,255,.2);} 
+* * * * * :hover { outline: 1px solid rgba(0,255,0,0.6); } 
+* * * * * * { outline: 1px solid rgba(255,255,0,.2);} 
+* * * * * * :hover { outline: 1px solid rgba(0,0,255,0.6); } 
+* * * * * * * { outline: 1px solid rgba(255,0,0,.2);} 
+* * * * * * * :hover { outline: 1px solid rgba(255,0,0,0.6); } 
+* * * * * * * * { outline: 1px solid rgba(0,255,0,.2);} 
+* * * * * * * * :hover { outline: 1px solid rgba(0,255,0,0.6); }
+* * * * * * * * * { outline: 1px solid rgba(0,0,255,.2);} 
+* * * * * * * * * :hover { outline: 1px solid rgba(0,0,255,0.6); }   
+*/
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+
+body {
+    overflow: hidden;
+}
+
+:root {
+    --Rod-Gig-size: .7px;
+    --Rod-Gig-time: .3s;
+
+    --azul: #3A86FF;
+    /* --rosa: #FF0054; */
+    --rosa-escuro: #9E0059;
+    --roxo: #864800;
+    --vermelho: #f2542d;
+    --amarelo: #FFBD00;
+    --amarelo-escuro: #bd8b00;
+
+    --padrao-um: rgb(0, 0, 0); 
+    --padrao-dois: rgb(51, 51, 51);
+    --padrao-tres: rgb(102, 102, 102);
+    --padrao-quatro: rgb(153, 153, 153);
+    --padrao-cinco: rgb(204, 204, 204);
+}
+
+.animacao {
+    /* background-color: red; */
+    height: calc(600*var(--Rod-Gig-size));
+    width: calc(600*var(--Rod-Gig-size));
+    margin: 100px auto 0px auto;
+    position: relative;
+}
+
+/*========================================== peças principais ==========================================*/
+
+.roda { /*roda pequena do meio*/
+    position: absolute;
+    height: calc(200*var(--Rod-Gig-size));
+    width: calc(200*var(--Rod-Gig-size));
+    border-radius: 50%;
+    left: 33.5%;
+    top: 33.5%;
+    background-color: var(--vermelho);
+    z-index: 8;
+    animation: calc(20*var(--Rod-Gig-time)) rotacao linear reverse infinite;  
+}
+
+.pe {
+    position: absolute;
+    height: calc(350*var(--Rod-Gig-size));
+    width: calc(80*var(--Rod-Gig-size));
+    left: 50%;
+    top: 80%;
+    transform: translate(-50%, -50%);
+    background-color: #2959a6;
+    z-index: 3;
+}
+
+.base {
+    position: absolute;
+    height: calc(100*var(--Rod-Gig-size));
+    width: calc(400*var(--Rod-Gig-size));
+    background-color: var(--vermelho);   
+    left: 50%;
+    top: 109%;
+    transform: translateX(-50%);
+    clip-path: polygon(0% 100%, 25% 0%, 75% 0%, 100% 100%);
+}
+
+.aro { /*roda grande*/
+    position: absolute;
+    left: -100%;
+    top: -100%;
+    height: calc(600*var(--Rod-Gig-size));
+    width: calc(600*var(--Rod-Gig-size));
+    border: calc(40*var(--Rod-Gig-size)) solid var(--vermelho);
+    border-radius: 50%;
+    z-index: 9;
+}
+
+/*====================================== Raios | barras que ficam girando ==============================*/
+
+[class^='raio'] {/*todos os raios*/
+    position: absolute;
+    width: calc(40*var(--Rod-Gig-size));
+    height: calc(598*var(--Rod-Gig-size));
+    background-color: var(--roxo);
+}
+
+.roda > [class$='um'] {  /*raio um*/
+    transform: rotate(90deg);
+    top: -100%;
+    left: 40%;
+}
+
+.roda > [class$='dois'] { /*raio dois*/
+    transform: rotate(180deg);
+    top: -100%;
+    left: 41%;
+}
+
+.roda > [class$='tres'] {/*raio tres*/
+    transform: rotate(45deg);
+    top: -100%;
+    left: 40%;
+}
+
+.roda > [class$='quatro'] {/*raio quatro*/
+    transform: rotate(-45deg);
+    top: -100%;
+    left: 40%;
+}
+
+/*================================================= Estrelas ===========================================*/
+
+[class$='estrela'] {
+    position: absolute;
+    background-color: var(--amarelo);
+    height: calc(150*var(--Rod-Gig-size));
+    width: calc(150*var(--Rod-Gig-size));
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    z-index: -1;
+}
+
+.aro > [class^='um'] {
+    top: -4%;
+    left: -4%;
+    transform: rotate(-45deg);
+}
+
+.aro > [class^='dois'] {
+    top: 74%;
+    left: 75%;
+    transform: rotate(60deg);
+}
+
+.aro > [class^='tres'] {
+    top: -4%;
+    left: 74%;
+    transform: rotate(40deg);
+}
+
+.aro > [class^='quatro'] {
+    top: 75%;
+    left: -3%;
+    transform: rotate(80deg);
+}
+
+/*================================================== carrinhos =========================================*/
+
+[class^='carrinho'] { /*todos os carrinhos*/
+    position: absolute;
+    height: calc(100*var(--Rod-Gig-size));
+    width: calc(100*var(--Rod-Gig-size));
+    border-radius: 50%;
+    background-color: var(--azul);
+    animation: rotacao calc(20*var(--Rod-Gig-time)) infinite linear;
+}
+
+.aro > [class$='um'] { /*carrinho um*/
+    left: 40%;
+    top: -12%;
+}
+
+.aro > [class$='dois'] { /*carrinho dois*/
+    top: 41%;
+    left: 93%;
+}
+
+.aro > [class$='tres'] { /*carrinho tres*/
+    top: 95%;
+    left: 40%;
+}
+
+.aro > [class$='quatro'] { /*carrinho quatro*/
+    top: 40%;
+    left: -13%;
+}
+
+/*============================================= peças dos carrinhos ===================================*/
+
+.aro .triangulo { /*triangulo do carrinho*/
+    position: absolute;
+    height: calc(60*var(--Rod-Gig-size));
+    width: calc(160*var(--Rod-Gig-size));
+    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+    background-color: var(--amarelo);
+    top: 16%;
+    left: -29%;
+}
+
+.aro .teto { /*barra horizontal do carrinho*/
+    position: absolute;
+    width: calc(180*var(--Rod-Gig-size));
+    height: calc(20*var(--Rod-Gig-size));
+    background-color: var(--amarelo-escuro);
+    border-radius: 50px;
+    top: 62%;
+    left: -37%;
+    z-index: 3;
+}
+
+[class^='barra'] { /*todas as barras verticais dos caarrinhos*/
+    position: absolute;
+    height: calc(50*var(--Rod-Gig-size));
+    width: calc(10*var(--Rod-Gig-size));
+    background-color: var(--roxo);
+    z-index: 2;
+}
+
+[class^='carrinho'] > [class$='um'] { /* barra vertical um*/
+    top: 82%;
+    left: -10%;
+    z-index: 300;
+}
+
+[class^='carrinho'] > [class$='dois'] { /* barra vertical dois*/
+    top: 73%;
+    left: 105%;
+}
+
+[class^='carrinho'] > [class$='tres'] { /* barra vertical tres*/
+    top: 82%;
+    left: 81%;
+    z-index: 6;
+}
+
+[class^='carrinho'] > [class$='quatro'] { /* barra vertical quatro*/
+    top: 80%;
+    left: 18%;
+}
+
+.dentro {
+    position: absolute;
+    width: calc(100*var(--Rod-Gig-size));
+    height: calc((10*var(--Rod-Gig-size)));
+    background-color: #2959a6;
+    transform: skewX(-70deg);
+    top: 122%;
+    left: 3%;
+    z-index: 5;
+}
+
+.frente {
+    position: absolute;
+    width: calc(100*var(--Rod-Gig-size));
+    height: calc(50*var(--Rod-Gig-size));
+    background-color: var(--azul);
+    top: 131%;
+    left: -9.5%;
+}
+
+.lado {
+    position: absolute;
+    height: calc(50*var(--Rod-Gig-size));
+    width: calc(25*var(--Rod-Gig-size));
+    background-color: #3473d9;
+    transform: skewy(-20deg);
+    top: 127%;
+    left: 90.5%;
+}
+
+/*========================================= Animações =================================================*/
+
+@keyframes rotacao {
+    0%{
+        transform: rotate(0deg);
+    }
+
+    100%{
+        transform: rotate(360deg);
+    }
+}
